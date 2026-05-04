@@ -61,8 +61,8 @@ export function ThankYou() {
         {/* Contact Info */}
         <div className="mt-10 text-sm space-y-1" style={{ color: "#7A6A5A" }}>
           <p>For immediate assistance, contact us at:</p>
-          <p className="font-semibold" style={{ color: "#C8C2B5" }}>017-2130 612</p>
-          <p style={{ color: "#9A8C7E" }}>jaysonmjs@skyworld.my</p>
+          <p className="font-semibold" style={{ color: "#C8C2B5" }}>017-2130 612 (Franky)</p>
+          <p style={{ color: "#9A8C7E" }}>skyalliance.acc@gmail.com</p>
         </div>
 
         <a
@@ -81,7 +81,7 @@ export function ThankYou() {
           <p className="text-xs" style={{ color: "#6A5848" }}>
             Lot 17899, Jalan Ayer Jerneh, Taman Ayer Panas, 53200 Kuala Lumpur
           </p>
-          <p className="text-xs" style={{ color: "#6A5848" }}>017-2130 612 &nbsp;|&nbsp; jaysonmjs@skyworld.my</p>
+          <p className="text-xs" style={{ color: "#6A5848" }}>017-2130 612 (Franky) &nbsp;|&nbsp; skyalliance.acc@gmail.com</p>
           <p className="text-xs mt-3 italic max-w-xl mx-auto" style={{ color: "#7A6A5A" }}>
             <strong className="not-italic">Disclaimer:</strong> This website is independently operated by a real estate agent from appointed agency Sky Alliance Enterprise, and is not the official website of the developer.
           </p>
