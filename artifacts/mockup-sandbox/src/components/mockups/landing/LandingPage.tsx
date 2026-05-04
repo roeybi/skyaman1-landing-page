@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const GOLD = "#B8914A";
 const CHARCOAL = "#1C1B1A";
@@ -567,11 +567,11 @@ export function LandingPage() {
   const [sending, setSending] = useState(false);
   const [navSolid, setNavSolid] = useState(false);
 
-  if (typeof window !== "undefined") {
-    window.onscroll = () => {
-      setNavSolid(window.scrollY > 20);
-    };
-  }
+  useEffect(() => {
+    const onScroll = () => setNavSolid(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <div className="min-h-screen font-sans" style={{ fontFamily: "'Georgia', serif", background: CHARCOAL }}>
@@ -651,7 +651,7 @@ export function LandingPage() {
       </section>
 
       {/* ── Section 1: USPs ─────────────────────────────────── */}
-      <section id="gallery" className="w-full py-16 px-4" style={{ background: CHARCOAL }}>
+      <section className="w-full py-16 px-4" style={{ background: CHARCOAL }}>
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {usps.map((usp, i) => (
             <div
@@ -672,7 +672,7 @@ export function LandingPage() {
       </section>
 
       {/* ── Section 2: Gallery ──────────────────────────────── */}
-      <section className="w-full py-16 px-4" style={{ background: DARK_GREY }}>
+      <section id="gallery" className="w-full py-16 px-4" style={{ background: DARK_GREY }}>
         <h2 className="text-4xl text-center font-light mb-2 tracking-widest" style={{ color: BEIGE, fontFamily: "'Georgia', serif" }}>
           Gallery
         </h2>
