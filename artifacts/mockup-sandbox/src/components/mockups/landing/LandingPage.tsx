@@ -876,14 +876,13 @@ export function LandingPage() {
 
       {/* ── Section 6: Footer ───────────────────────────────── */}
       <footer className="w-full py-12 px-4 text-center" style={{ background: FOOTER_BG }}>
-        {/* Logo Placeholder */}
-        <div
-          className="inline-flex items-center justify-center w-40 h-16 mx-auto mb-6"
-          style={{ border: `1.5px solid #9A8C7E`, background: "rgba(255,255,255,0.3)" }}
-        >
-          <span className="text-xs tracking-widest font-bold" style={{ color: "#4A3728" }}>
-            SKY ALLIANCE<br />TITAN
-          </span>
+        {/* Logo */}
+        <div className="flex justify-center mb-6">
+          <img
+            src="/__mockup/skyalliance-logo.avif"
+            alt="Sky Alliance Enterprise"
+            className="h-20 w-auto object-contain"
+          />
         </div>
 
         <div className="space-y-2 text-sm" style={{ color: "#4A3728" }}>
