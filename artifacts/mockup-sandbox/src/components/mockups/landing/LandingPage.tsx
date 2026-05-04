@@ -124,36 +124,122 @@ const facilityPlans = [
 
 function FacilitiesPlan() {
   const [active, setActive] = useState(0);
+  const [lightbox, setLightbox] = useState(false);
+
+  const openLightbox = () => setLightbox(true);
+  const closeLightbox = () => setLightbox(false);
+
   return (
-    <div className="flex flex-col" style={{ background: "#1E1D1C", border: `1px solid #3A3330` }}>
-      {/* Tabs */}
-      <div className="flex">
-        {facilityPlans.map((plan, i) => (
-          <button
-            key={plan.label}
-            onClick={() => setActive(i)}
-            className="flex-1 py-3 text-xs tracking-[0.25em] uppercase font-bold transition-colors"
-            style={{
-              background: active === i ? "#2D2D2D" : "#1E1D1C",
-              color: active === i ? GOLD : "#6A635A",
-              borderBottom: active === i ? `2px solid ${GOLD}` : "2px solid transparent",
-              cursor: "pointer",
-            }}
+    <>
+      {/* Card */}
+      <div className="flex flex-col" style={{ background: "#1E1D1C", border: `1px solid #3A3330` }}>
+        {/* Tabs */}
+        <div className="flex">
+          {facilityPlans.map((plan, i) => (
+            <button
+              key={plan.label}
+              onClick={() => setActive(i)}
+              className="flex-1 py-3 text-xs tracking-[0.25em] uppercase font-bold transition-colors"
+              style={{
+                background: active === i ? "#2D2D2D" : "#1E1D1C",
+                color: active === i ? GOLD : "#6A635A",
+                borderBottom: active === i ? `2px solid ${GOLD}` : "2px solid transparent",
+                cursor: "pointer",
+              }}
+            >
+              {plan.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Image — click to open fullscreen */}
+        <div
+          className="flex items-center justify-center p-4 relative group"
+          style={{ minHeight: 440, cursor: "zoom-in" }}
+          onClick={openLightbox}
+        >
+          <img
+            src={facilityPlans[active].src}
+            alt={facilityPlans[active].label + " facility plan"}
+            className="w-full h-auto object-contain"
+            style={{ maxHeight: 440 }}
+          />
+          {/* Hover hint */}
+          <div
+            className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+            style={{ background: "rgba(0,0,0,0.35)" }}
           >
-            {plan.label}
+            <span
+              className="text-xs tracking-[0.25em] uppercase font-bold px-4 py-2"
+              style={{ color: GOLD, border: `1px solid ${GOLD}` }}
+            >
+              View Full Screen
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Fullscreen Lightbox */}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          style={{ background: "rgba(0,0,0,0.93)" }}
+          onClick={closeLightbox}
+        >
+          {/* Close button — visible on all screen sizes */}
+          <button
+            onClick={closeLightbox}
+            className="absolute top-4 right-4 flex items-center justify-center z-50"
+            style={{
+              background: "#1E1D1C",
+              border: `1px solid ${GOLD}`,
+              color: GOLD,
+              width: 44,
+              height: 44,
+              borderRadius: "50%",
+              cursor: "pointer",
+              fontSize: 20,
+              lineHeight: 1,
+            }}
+            aria-label="Close fullscreen"
+          >
+            ✕
           </button>
-        ))}
-      </div>
-      {/* Image */}
-      <div className="flex items-center justify-center p-4" style={{ minHeight: 440 }}>
-        <img
-          src={facilityPlans[active].src}
-          alt={facilityPlans[active].label + " facility plan"}
-          className="w-full h-auto object-contain"
-          style={{ maxHeight: 440 }}
-        />
-      </div>
-    </div>
+
+          {/* Tab bar inside lightbox */}
+          <div
+            className="absolute top-4 left-1/2 flex gap-2"
+            style={{ transform: "translateX(-50%)" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {facilityPlans.map((plan, i) => (
+              <button
+                key={plan.label}
+                onClick={() => setActive(i)}
+                className="px-4 py-1.5 text-xs tracking-[0.2em] uppercase font-bold transition-colors"
+                style={{
+                  background: active === i ? GOLD : "rgba(30,29,28,0.85)",
+                  color: active === i ? "#1E1D1C" : "#9A8E80",
+                  border: `1px solid ${active === i ? GOLD : "#3A3330"}`,
+                  cursor: "pointer",
+                }}
+              >
+                {plan.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Full-res image */}
+          <img
+            src={facilityPlans[active].src}
+            alt={facilityPlans[active].label + " facility plan"}
+            className="max-w-full max-h-full object-contain"
+            style={{ padding: "4rem 1.5rem 1.5rem", cursor: "default" }}
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
+    </>
   );
 }
 
