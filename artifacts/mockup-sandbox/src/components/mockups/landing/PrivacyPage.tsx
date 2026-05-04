@@ -102,8 +102,8 @@ export function PrivacyPage() {
           <div className="mt-4 p-4 text-sm space-y-1" style={{ background: "rgba(42,31,23,0.06)", borderLeft: `3px solid ${GOLD}` }}>
             <p className="font-semibold" style={{ color: DARK_BROWN }}>Sky Alliance Enterprise</p>
             <p>Lot 17899, Jalan Ayer Jerneh, Taman Ayer Panas, 53200 Kuala Lumpur</p>
-            <p>Phone: 017-2130 612</p>
-            <p>Email: jaysonmjs@skyworld.my</p>
+            <p>Phone: 017-2130 612 (Franky)</p>
+            <p>Email: skyalliance.acc@gmail.com</p>
           </div>
         </section>
 
@@ -124,7 +124,7 @@ export function PrivacyPage() {
           © 2026 Sky Aman 1 Residences. All Rights Reserved.
         </p>
         <p className="text-xs mt-2 italic" style={{ color: "#6A5848" }}>
-          Sky Alliance Enterprise (202603044120) (IP0620548-A) &nbsp;|&nbsp; 017-2130 612 &nbsp;|&nbsp; jaysonmjs@skyworld.my
+          Sky Alliance Enterprise (202603044120) (IP0620548-A) &nbsp;|&nbsp; 017-2130 612 (Franky) &nbsp;|&nbsp; skyalliance.acc@gmail.com
         </p>
         <p className="text-xs mt-3 italic max-w-xl mx-auto" style={{ color: "#6A5848" }}>
           <strong className="not-italic">Disclaimer:</strong> This website is independently operated by a real estate agent from appointed agency Sky Alliance Enterprise, and is not the official website of the developer. All information provided is for reference only.
