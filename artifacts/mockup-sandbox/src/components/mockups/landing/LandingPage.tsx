@@ -68,38 +68,50 @@ const floorPlanData: Record<string, { builtUp: string; bedrooms: string; bathroo
 const usps = [
   {
     icon: (
-      <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10 mx-auto mb-4">
-        <rect x="5" y="5" width="30" height="30" rx="3" stroke={GOLD} strokeWidth="2" fill="none" />
-        <path d="M12 20h16M20 12v16" stroke={GOLD} strokeWidth="2" strokeLinecap="round" />
+      <svg viewBox="0 0 64 64" fill="none" className="w-12 h-12 mx-auto mb-4">
+        <path d="M8 50C10 37 18 30 32 30s22 7 24 20" stroke="#F2EDE3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="32" cy="22" r="8" stroke="#F2EDE3" strokeWidth="2.5" fill="none" />
+        <circle cx="18" cy="24" r="5" stroke="#F2EDE3" strokeWidth="2.5" fill="none" />
+        <circle cx="46" cy="24" r="5" stroke="#F2EDE3" strokeWidth="2.5" fill="none" />
+        <path d="M18 29v5M46 29v5" stroke="#F2EDE3" strokeWidth="2.5" strokeLinecap="round" />
       </svg>
     ),
     text: "Low Density with Residential Title",
   },
   {
     icon: (
-      <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10 mx-auto mb-4">
-        <path d="M5 30 L5 20 L20 8 L35 20 L35 30" stroke={GOLD} strokeWidth="2" fill="none" strokeLinejoin="round" />
-        <rect x="14" y="22" width="12" height="8" stroke={GOLD} strokeWidth="2" fill="none" />
+      <svg viewBox="0 0 64 64" fill="none" className="w-12 h-12 mx-auto mb-4">
+        <path d="M12 42c0-7 5-12 12-12 5 0 9 2 11 6 2-5 6-8 11-8 7 0 12 5 12 12" stroke="#F2EDE3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M31 16v18" stroke="#F2EDE3" strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M31 18h6M31 22h6M31 26h6M31 30h6" stroke="#F2EDE3" strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M42 16v18" stroke="#F2EDE3" strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M42 16c4 3 4 15 0 18" stroke="#F2EDE3" strokeWidth="2.5" strokeLinecap="round" />
       </svg>
     ),
     text: "Wide Frontage with North-South Orientation from 1,097 – 1,548 sq.ft.",
   },
   {
     icon: (
-      <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10 mx-auto mb-4">
-        <circle cx="20" cy="20" r="14" stroke={GOLD} strokeWidth="2" fill="none" />
-        <path d="M20 8 L20 20 L28 20" stroke={GOLD} strokeWidth="2" strokeLinecap="round" />
-        <path d="M8 32 L32 32" stroke={GOLD} strokeWidth="2" strokeLinecap="round" />
+      <svg viewBox="0 0 64 64" fill="none" className="w-12 h-12 mx-auto mb-4">
+        <path d="M10 34h14l6-10h10l-4 10h18" stroke="#F2EDE3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M18 34l-4 8h10l4-8" stroke="#F2EDE3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M40 26l8 8" stroke="#F2EDE3" strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M14 42h38" stroke="#F2EDE3" strokeWidth="2.5" strokeLinecap="round" />
       </svg>
     ),
     text: "Adjacent to the MRT Station",
   },
   {
     icon: (
-      <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10 mx-auto mb-4">
-        <rect x="5" y="12" width="30" height="20" rx="2" stroke={GOLD} strokeWidth="2" fill="none" />
-        <path d="M12 12 L12 8 L28 8 L28 12" stroke={GOLD} strokeWidth="2" strokeLinecap="round" />
-        <circle cx="20" cy="22" r="4" stroke={GOLD} strokeWidth="2" fill="none" />
+      <svg viewBox="0 0 64 64" fill="none" className="w-12 h-12 mx-auto mb-4">
+        <circle cx="20" cy="42" r="6" stroke="#F2EDE3" strokeWidth="2.5" fill="none" />
+        <circle cx="46" cy="42" r="6" stroke="#F2EDE3" strokeWidth="2.5" fill="none" />
+        <path d="M20 36V25M46 36V25" stroke="#F2EDE3" strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M20 25h18l8 7v10" stroke="#F2EDE3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M48 25h7v11" stroke="#F2EDE3" strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M14 48h10M40 48h12" stroke="#F2EDE3" strokeWidth="2.5" strokeLinecap="round" />
+        <circle cx="48" cy="18" r="6" stroke="#F2EDE3" strokeWidth="2.5" fill="none" />
+        <path d="M48 14v8M44 18h8" stroke="#F2EDE3" strokeWidth="2.5" strokeLinecap="round" />
       </svg>
     ),
     text: "Direct Car Park Access for Added Convenience",
