@@ -112,7 +112,7 @@ function GoldDivider() {
 export function LandingPage() {
   const [locationTab, setLocationTab] = useState("Surrounding Amenities");
   const [floorTab, setFloorTab] = useState("Type A");
-  const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
   let itemNumber = 1;
 
@@ -390,96 +390,102 @@ export function LandingPage() {
             className="p-8"
             style={{ background: "white", boxShadow: "0 4px 32px rgba(42,31,23,0.08)" }}
           >
-            {submitted ? (
-              <div className="flex flex-col items-center justify-center py-12 text-center">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4" style={{ background: GOLD }}>
-                  <svg viewBox="0 0 24 24" className="w-8 h-8" fill="none">
-                    <path d="M5 13l4 4L19 7" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-2" style={{ color: DARK_BROWN }}>Thank You!</h3>
-                <p className="text-sm" style={{ color: "#7A6A5A" }}>We have received your enquiry and will contact you shortly.</p>
+            <form
+              id="leadForm"
+              className="space-y-4"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                setSending(true);
+                const SCRIPT_URL =
+                  "https://script.google.com/macros/s/AKfycbxcS3VPdicyVOz4W6uwJ5FxItJBgG6hscEdKLg2GuddBuXmub8VU1kbxLU3pzj2lO94/exec";
+                try {
+                  const formData = new FormData(e.currentTarget);
+                  await fetch(SCRIPT_URL, { method: "POST", body: formData });
+                  window.location.href = "/__mockup/preview/landing/ThankYou";
+                } catch {
+                  alert("Something went wrong. Please try again or contact us directly.");
+                  setSending(false);
+                }
+              }}
+            >
+              {/* Name */}
+              <div>
+                <label className="block text-xs tracking-widest mb-1 uppercase" style={{ color: "#5A5040" }}>Full Name</label>
+                <input
+                  type="text"
+                  name="Name"
+                  required
+                  className="w-full px-3 py-2.5 text-sm border outline-none"
+                  style={{ border: "1px solid #D4CFC4", borderRadius: 0, color: "#2A1F17" }}
+                />
               </div>
-            ) : (
-              <form
-                onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}
-                className="space-y-4"
+              {/* Email */}
+              <div>
+                <label className="block text-xs tracking-widest mb-1 uppercase" style={{ color: "#5A5040" }}>Email Address</label>
+                <input
+                  type="email"
+                  name="Email"
+                  required
+                  className="w-full px-3 py-2.5 text-sm border outline-none"
+                  style={{ border: "1px solid #D4CFC4", borderRadius: 0, color: "#2A1F17" }}
+                />
+              </div>
+              {/* Phone */}
+              <div>
+                <label className="block text-xs tracking-widest mb-1 uppercase" style={{ color: "#5A5040" }}>Phone Number</label>
+                <input
+                  type="tel"
+                  name="Phone"
+                  required
+                  className="w-full px-3 py-2.5 text-sm border outline-none"
+                  style={{ border: "1px solid #D4CFC4", borderRadius: 0, color: "#2A1F17" }}
+                />
+              </div>
+              {/* Message */}
+              <div>
+                <label className="block text-xs tracking-widest mb-1 uppercase" style={{ color: "#5A5040" }}>Message</label>
+                <textarea
+                  name="Message"
+                  rows={3}
+                  className="w-full px-3 py-2.5 text-sm border outline-none resize-none"
+                  style={{ border: "1px solid #D4CFC4", borderRadius: 0, color: "#2A1F17" }}
+                />
+              </div>
+              {/* Compliance Checkbox */}
+              <div className="flex items-start gap-3 pt-1">
+                <input
+                  type="checkbox"
+                  required
+                  id="consent"
+                  className="mt-1 flex-shrink-0"
+                  style={{ accentColor: DARK_BROWN }}
+                />
+                <label htmlFor="consent" className="text-xs leading-relaxed" style={{ color: "#5A5040" }}>
+                  I agree to the{" "}
+                  <a href="/__mockup/preview/landing/PrivacyPage" target="_blank" rel="noopener noreferrer" style={{ color: DARK_BROWN, textDecoration: "underline" }}>
+                    Privacy Policy
+                  </a>
+                  {" "}and consent to Sky Alliance Enterprise contacting me regarding my inquiry.{" "}
+                  <a href="/__mockup/preview/landing/PrivacyPage" target="_blank" rel="noopener noreferrer" style={{ color: DARK_BROWN, textDecoration: "underline" }}>
+                    View Privacy Policy
+                  </a>
+                </label>
+              </div>
+              {/* Submit */}
+              <button
+                type="submit"
+                disabled={sending}
+                className="w-full py-3 text-sm tracking-widest font-semibold uppercase transition-opacity"
+                style={{
+                  background: DARK_BROWN,
+                  color: BEIGE,
+                  opacity: sending ? 0.65 : 1,
+                  cursor: sending ? "not-allowed" : "pointer",
+                }}
               >
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs tracking-widest mb-1 uppercase" style={{ color: "#5A5040" }}>First Name</label>
-                    <input
-                      type="text"
-                      required
-                      className="w-full px-3 py-2.5 text-sm border outline-none focus:ring-1"
-                      style={{ border: "1px solid #D4CFC4", borderRadius: 0, color: "#2A1F17" }}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs tracking-widest mb-1 uppercase" style={{ color: "#5A5040" }}>Last Name</label>
-                    <input
-                      type="text"
-                      required
-                      className="w-full px-3 py-2.5 text-sm border outline-none focus:ring-1"
-                      style={{ border: "1px solid #D4CFC4", borderRadius: 0, color: "#2A1F17" }}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-xs tracking-widest mb-1 uppercase" style={{ color: "#5A5040" }}>Email Address</label>
-                  <input
-                    type="email"
-                    required
-                    className="w-full px-3 py-2.5 text-sm border outline-none"
-                    style={{ border: "1px solid #D4CFC4", borderRadius: 0, color: "#2A1F17" }}
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs tracking-widest mb-1 uppercase" style={{ color: "#5A5040" }}>Phone Number</label>
-                  <input
-                    type="tel"
-                    required
-                    className="w-full px-3 py-2.5 text-sm border outline-none"
-                    style={{ border: "1px solid #D4CFC4", borderRadius: 0, color: "#2A1F17" }}
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs tracking-widest mb-1 uppercase" style={{ color: "#5A5040" }}>Message</label>
-                  <textarea
-                    rows={3}
-                    className="w-full px-3 py-2.5 text-sm border outline-none resize-none"
-                    style={{ border: "1px solid #D4CFC4", borderRadius: 0, color: "#2A1F17" }}
-                  />
-                </div>
-                {/* Compliance Checkbox */}
-                <div className="flex items-start gap-3 pt-1">
-                  <input
-                    type="checkbox"
-                    required
-                    id="consent"
-                    className="mt-1 flex-shrink-0"
-                    style={{ accentColor: DARK_BROWN }}
-                  />
-                  <label htmlFor="consent" className="text-xs leading-relaxed" style={{ color: "#5A5040" }}>
-                    I agree to the{" "}
-                    <a href="/__mockup/preview/landing/PrivacyPage" target="_blank" rel="noopener noreferrer" style={{ color: DARK_BROWN, textDecoration: "underline" }}>
-                      Privacy Policy
-                    </a>
-                    {" "}and consent to Sky Alliance Enterprise contacting me regarding my inquiry.{" "}
-                    <a href="/__mockup/preview/landing/PrivacyPage" target="_blank" rel="noopener noreferrer" style={{ color: DARK_BROWN, textDecoration: "underline" }}>
-                      View Privacy Policy
-                    </a>
-                  </label>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-3 text-sm tracking-widest font-semibold uppercase transition-opacity hover:opacity-90"
-                  style={{ background: DARK_BROWN, color: BEIGE }}
-                >
-                  Send
-                </button>
-              </form>
-            )}
+                {sending ? "Sending…" : "Send"}
+              </button>
+            </form>
           </div>
         </div>
       </section>
