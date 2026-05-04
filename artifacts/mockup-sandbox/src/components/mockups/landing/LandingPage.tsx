@@ -225,14 +225,14 @@ function LightboxImage({
 }
 
 const galleryImages = [
-  { src: "/__mockup/gallery-1.jpg", alt: "Sky Aman 1 – Gallery 1" },
-  { src: "/__mockup/gallery-2.jpg", alt: "Sky Aman 1 – Gallery 2" },
-  { src: "/__mockup/gallery-3.jpg", alt: "Sky Aman 1 – Gallery 3" },
-  { src: "/__mockup/gallery-4.jpg", alt: "Sky Aman 1 – Gallery 4" },
-  { src: "/__mockup/gallery-5.jpg", alt: "Sky Aman 1 – Gallery 5" },
-  { src: "/__mockup/gallery-6.jpg", alt: "Sky Aman 1 – Gallery 6" },
-  { src: "/__mockup/gallery-7.jpg", alt: "Sky Aman 1 – Gallery 7" },
-  { src: "/__mockup/gallery-8.jpg", alt: "Sky Aman 1 – Gallery 8" },
+  { src: "/__mockup/gallery-rooftop-facade.png",       label: "Rooftop Facade" },
+  { src: "/__mockup/gallery-swimming-pool.png",        label: "Swimming Pool With Eternity Portal Reflection" },
+  { src: "/__mockup/gallery-facilities-overview.png",  label: "Facilities Overview" },
+  { src: "/__mockup/gallery-lanai-bonsai.png",         label: "Lanai Overlooking Bonsai Garden" },
+  { src: "/__mockup/gallery-aman-park.png",            label: "Aman Park" },
+  { src: "/__mockup/gallery-gym.png",                  label: "Gym" },
+  { src: "/__mockup/gallery-creek-deck.png",           label: "Cascading Water With Creek Deck" },
+  { src: "/__mockup/gallery-entrance.png",             label: "Entrance Statement" },
 ];
 
 function GalleryPlaceholder({ index }: { index: number }) {
@@ -266,7 +266,7 @@ function Gallery() {
         {galleryImages.map((img, i) => (
           <div
             key={i}
-            className="aspect-square overflow-hidden cursor-pointer"
+            className="aspect-square overflow-hidden cursor-pointer relative group"
             style={{
               borderRadius: 6,
               border: "1.5px solid transparent",
@@ -284,20 +284,21 @@ function Gallery() {
           >
             <img
               src={img.src}
-              alt={img.alt}
+              alt={img.label}
               className="w-full h-full object-cover"
-              onError={(e) => {
-                (e.currentTarget as HTMLImageElement).style.display = "none";
-                const parent = (e.currentTarget as HTMLImageElement).parentElement;
-                if (parent && !parent.querySelector(".gallery-placeholder")) {
-                  const ph = document.createElement("div");
-                  ph.className = "gallery-placeholder w-full h-full";
-                  ph.style.height = "100%";
-                  parent.appendChild(ph);
-                }
-              }}
             />
-            <GalleryPlaceholder index={i + 1} />
+            {/* Label overlay — appears on hover */}
+            <div
+              className="absolute inset-0 flex items-end opacity-0 group-hover:opacity-100 transition-opacity"
+              style={{ background: "linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 55%)" }}
+            >
+              <span
+                className="w-full px-3 py-2 text-xs tracking-wider leading-tight"
+                style={{ color: "#F2EDE3" }}
+              >
+                {img.label}
+              </span>
+            </div>
           </div>
         ))}
       </div>
@@ -352,9 +353,9 @@ function Gallery() {
           {/* Image */}
           <img
             src={galleryImages[lightboxIdx].src}
-            alt={galleryImages[lightboxIdx].alt}
+            alt={galleryImages[lightboxIdx].label}
             className="max-w-full max-h-full object-contain"
-            style={{ padding: "4rem 5rem", cursor: "default" }}
+            style={{ padding: "4rem 5rem 3rem", cursor: "default" }}
             onClick={(e) => e.stopPropagation()}
           />
 
@@ -378,12 +379,18 @@ function Gallery() {
             ›
           </button>
 
-          {/* Counter */}
+          {/* Label + Counter */}
           <div
-            className="absolute bottom-4 left-1/2 text-xs tracking-widest"
-            style={{ transform: "translateX(-50%)", color: "#9A8E80" }}
+            className="absolute bottom-4 left-1/2 flex flex-col items-center gap-1"
+            style={{ transform: "translateX(-50%)", whiteSpace: "nowrap" }}
+            onClick={(e) => e.stopPropagation()}
           >
-            {lightboxIdx + 1} / {galleryImages.length}
+            <span className="text-sm tracking-wider" style={{ color: BEIGE }}>
+              {galleryImages[lightboxIdx].label}
+            </span>
+            <span className="text-xs tracking-widest" style={{ color: "#9A8E80" }}>
+              {lightboxIdx + 1} / {galleryImages.length}
+            </span>
           </div>
         </div>
       )}
