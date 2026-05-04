@@ -480,6 +480,49 @@ export function LandingPage() {
           </p>
         </div>
       </footer>
+
+      {/* ── Floating WhatsApp Button ─────────────────────── */}
+      <a
+        href="https://wa.me/601154481426?text=Hi.%20I%20saw%20your%20ads%20on%20Google%20and%20I'm%20interested%20in%20The%20SkyAman%201%20Residences%20project.%20Please%20contact%20me.%20Thanks!"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp"
+        className="group"
+        style={{
+          position: "fixed",
+          bottom: 28,
+          right: 28,
+          zIndex: 9999,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: 60,
+          height: 60,
+          borderRadius: "50%",
+          background: "#25D366",
+          boxShadow: "0 4px 20px rgba(37,211,102,0.45), 0 2px 8px rgba(0,0,0,0.25)",
+          transition: "transform 0.2s ease, box-shadow 0.2s ease",
+        }}
+        onMouseEnter={(e) => {
+          (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1.12)";
+          (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 6px 28px rgba(37,211,102,0.6), 0 4px 12px rgba(0,0,0,0.3)";
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1)";
+          (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 20px rgba(37,211,102,0.45), 0 2px 8px rgba(0,0,0,0.25)";
+        }}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 32 32"
+          width="32"
+          height="32"
+          fill="white"
+          aria-hidden="true"
+        >
+          <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.783 6.863L2 30l7.338-1.762A13.94 13.94 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.5a11.44 11.44 0 0 1-5.847-1.607l-.419-.249-4.352 1.045 1.074-4.24-.273-.435A11.46 11.46 0 0 1 4.5 16C4.5 9.649 9.649 4.5 16 4.5S27.5 9.649 27.5 16 22.351 27.5 16 27.5zm6.29-8.61c-.344-.172-2.036-1.004-2.352-1.119-.316-.115-.546-.172-.776.172-.23.344-.893 1.119-1.094 1.349-.201.23-.402.258-.746.086-.344-.172-1.452-.535-2.767-1.707-1.022-.912-1.712-2.038-1.912-2.382-.201-.344-.021-.53.151-.701.155-.154.344-.402.516-.603.172-.201.23-.344.344-.574.115-.23.058-.431-.029-.603-.086-.172-.776-1.87-1.063-2.562-.28-.672-.564-.58-.776-.591l-.661-.012c-.23 0-.603.086-.919.431-.316.344-1.207 1.179-1.207 2.876 0 1.697 1.236 3.337 1.408 3.567.172.23 2.432 3.713 5.893 5.207.824.356 1.467.568 1.968.728.827.263 1.58.226 2.175.137.663-.099 2.036-.832 2.323-1.635.287-.803.287-1.491.201-1.635-.086-.143-.316-.23-.66-.402z" />
+        </svg>
+      </a>
     </div>
   );
 }
