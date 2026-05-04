@@ -117,6 +117,80 @@ function GoldDivider() {
   return <div className="w-16 h-0.5 mx-auto mt-3" style={{ background: GOLD }} />;
 }
 
+function LightboxImage({
+  src,
+  alt,
+  className = "",
+  imgStyle = {},
+  wrapperStyle = {},
+  wrapperClassName = "",
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  imgStyle?: React.CSSProperties;
+  wrapperStyle?: React.CSSProperties;
+  wrapperClassName?: string;
+}) {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <div
+        className={`relative group ${wrapperClassName}`}
+        style={{ cursor: "zoom-in", ...wrapperStyle }}
+        onClick={() => setOpen(true)}
+      >
+        <img src={src} alt={alt} className={className} style={imgStyle} />
+        <div
+          className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+          style={{ background: "rgba(0,0,0,0.38)" }}
+        >
+          <span
+            className="text-xs tracking-[0.25em] uppercase font-bold px-4 py-2"
+            style={{ color: GOLD, border: `1px solid ${GOLD}` }}
+          >
+            View Full Screen
+          </span>
+        </div>
+      </div>
+
+      {open && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          style={{ background: "rgba(0,0,0,0.93)" }}
+          onClick={() => setOpen(false)}
+        >
+          <button
+            onClick={() => setOpen(false)}
+            className="absolute top-4 right-4 flex items-center justify-center z-50"
+            style={{
+              background: "#1E1D1C",
+              border: `1px solid ${GOLD}`,
+              color: GOLD,
+              width: 44,
+              height: 44,
+              borderRadius: "50%",
+              cursor: "pointer",
+              fontSize: 20,
+              lineHeight: 1,
+            }}
+            aria-label="Close fullscreen"
+          >
+            ✕
+          </button>
+          <img
+            src={src}
+            alt={alt}
+            className="max-w-full max-h-full object-contain"
+            style={{ padding: "4rem 1.5rem 1.5rem", cursor: "default" }}
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
+    </>
+  );
+}
+
 const facilityPlans = [
   { label: "Ground Floor", src: "/__mockup/facility-g-floor.png" },
   { label: "Podium Deck", src: "/__mockup/facility-podium.png" },
@@ -340,13 +414,13 @@ export function LandingPage() {
 
         <div className="max-w-6xl mx-auto mt-10 grid grid-cols-1 md:grid-cols-2 gap-0">
           {/* Map Image */}
-          <div className="relative overflow-hidden" style={{ minHeight: 420 }}>
-            <img
-              src="/__mockup/location-map.avif"
-              alt="Sky Aman 1 Cheras location map"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </div>
+          <LightboxImage
+            src="/__mockup/location-map.avif"
+            alt="Sky Aman 1 Cheras location map"
+            className="absolute inset-0 h-full w-full object-cover"
+            wrapperClassName="relative overflow-hidden"
+            wrapperStyle={{ minHeight: 420 }}
+          />
 
           {/* Tabbed Panel */}
           <div className="p-8 flex flex-col" style={{ background: CHARCOAL, minHeight: 420 }}>
@@ -417,17 +491,14 @@ export function LandingPage() {
             &nbsp;|&nbsp; BEDROOMS: {floorPlanData[floorTab].bedrooms}
             &nbsp;|&nbsp; BATHROOMS: {floorPlanData[floorTab].bathrooms}
           </p>
-          {/* Floorplan Placeholder */}
-          <div
-            className="w-full flex items-center justify-center overflow-hidden"
-            style={{ background: DARK_GREY, minHeight: 480, border: `1px solid #3A3330` }}
-          >
-            <img
-              src={floorPlanImages[floorTab]}
-              alt={`${floorTab} floor plan`}
-              className="w-full h-full object-contain"
-            />
-          </div>
+          {/* Floor Plan Image */}
+          <LightboxImage
+            src={floorPlanImages[floorTab]}
+            alt={`${floorTab} floor plan`}
+            className="w-full h-full object-contain"
+            wrapperClassName="w-full flex items-center justify-center overflow-hidden"
+            wrapperStyle={{ background: DARK_GREY, minHeight: 480, border: `1px solid #3A3330` }}
+          />
         </div>
       </section>
 
