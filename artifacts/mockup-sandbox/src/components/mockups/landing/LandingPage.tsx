@@ -1,4 +1,5 @@
 import { useState } from "react";
+import locationImage from "@assets/Location_Sky_Aman_1_Cheras_1777871900170.avif";
 
 const GOLD = "#B8914A";
 const CHARCOAL = "#1C1B1A";
@@ -205,18 +206,13 @@ export function LandingPage() {
         <GoldDivider />
 
         <div className="max-w-6xl mx-auto mt-10 grid grid-cols-1 md:grid-cols-2 gap-0">
-          {/* Map Placeholder */}
-          <div
-            className="relative flex items-center justify-center"
-            style={{ background: "#C8C2B5", minHeight: 420 }}
-          >
-            <div className="text-center" style={{ color: "#7A7060" }}>
-              <svg viewBox="0 0 64 64" className="w-16 h-16 mx-auto mb-3 opacity-40">
-                <path d="M32 4 C18 4 8 14 8 28 C8 44 32 60 32 60 C32 60 56 44 56 28 C56 14 46 4 32 4Z" stroke="currentColor" strokeWidth="2" fill="none" />
-                <circle cx="32" cy="28" r="8" stroke="currentColor" strokeWidth="2" fill="none" />
-              </svg>
-              <p className="text-sm tracking-widest opacity-60">AREA MAP</p>
-            </div>
+          {/* Map Image */}
+          <div className="relative overflow-hidden" style={{ minHeight: 420 }}>
+            <img
+              src={locationImage}
+              alt="Sky Aman 1 Cheras location map"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
           </div>
 
           {/* Tabbed Panel */}
