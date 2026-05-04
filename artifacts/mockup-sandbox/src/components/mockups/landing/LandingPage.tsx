@@ -891,7 +891,7 @@ export function LandingPage() {
             Lot 17899, Jalan Ayer Jerneh, Taman Ayer Panas, 53200 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur
           </p>
           <p className="text-xs" style={{ color: "#6A5848" }}>
-            Contact Number: 017-2130 612 &nbsp;|&nbsp; Email: jaysonmjs@skyworld.my
+            Contact Number: 017-2130 612 (Franky) &nbsp;|&nbsp; Email: skyalliance.acc@gmail.com
           </p>
           <p className="text-xs mt-4" style={{ color: "#6A5848" }}>
             © 2026 Sky Aman 1 Residences. All Rights Reserved.{" "}
