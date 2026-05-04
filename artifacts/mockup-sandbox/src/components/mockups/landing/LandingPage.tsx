@@ -120,17 +120,60 @@ export function LandingPage() {
     <div className="min-h-screen font-sans" style={{ fontFamily: "'Georgia', serif", background: CHARCOAL }}>
 
       {/* ── Hero Banner ─────────────────────────────────────── */}
+      {/*
+        hero-bg: Swap in your building render here.
+        Example: style={{ backgroundImage: "url('/hero.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+        The dark overlay below keeps text readable over any image.
+      */}
       <header
-        className="w-full flex flex-col items-center justify-center py-16 px-4 text-center relative"
-        style={{ background: `linear-gradient(135deg, ${DARK_BROWN} 0%, ${CHARCOAL} 60%, #1a1510 100%)`, minHeight: 220 }}
+        className="hero-bg w-full flex flex-col items-center justify-center text-center relative"
+        style={{
+          background: `linear-gradient(135deg, ${DARK_BROWN} 0%, ${CHARCOAL} 60%, #1a1510 100%)`,
+          minHeight: 340,
+        }}
       >
-        <div className="text-xs tracking-[0.4em] mb-3" style={{ color: GOLD }}>EXCLUSIVE RESIDENTIAL DEVELOPMENT</div>
-        <h1 className="text-4xl md:text-6xl font-bold tracking-wide" style={{ color: BEIGE, letterSpacing: "0.08em" }}>
-          SKY AMAN 1
-        </h1>
-        <div className="text-2xl md:text-3xl mt-1 font-light tracking-widest" style={{ color: GOLD }}>RESIDENCES</div>
-        <div className="mt-4 w-24 h-px" style={{ background: GOLD }} />
-        <p className="mt-4 text-sm tracking-widest" style={{ color: "#9A8C7E" }}>CHERAS · KUALA LUMPUR</p>
+        {/* Dark semi-transparent overlay — keeps text legible over a background image */}
+        <div
+          className="hero-overlay absolute inset-0"
+          style={{ background: "rgba(14,11,8,0.62)", zIndex: 0 }}
+        />
+
+        {/* Content sits above the overlay */}
+        <div className="relative z-10 flex flex-col items-center px-4 py-16">
+          <div className="text-xs tracking-[0.4em] mb-3" style={{ color: GOLD }}>EXCLUSIVE RESIDENTIAL DEVELOPMENT</div>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-wide" style={{ color: BEIGE, letterSpacing: "0.08em" }}>
+            SKY AMAN 1
+          </h1>
+          <div className="text-2xl md:text-3xl mt-1 font-light tracking-widest" style={{ color: GOLD }}>RESIDENCES</div>
+          <div className="mt-4 w-24 h-px" style={{ background: GOLD }} />
+          <p className="mt-4 text-sm tracking-widest" style={{ color: "#9A8C7E" }}>CHERAS · KUALA LUMPUR</p>
+
+          {/* Register Now CTA */}
+          <button
+            onClick={() => {
+              const el = document.getElementById("register");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="mt-8 px-10 py-3 text-sm tracking-[0.25em] uppercase font-semibold transition-all duration-200"
+            style={{
+              background: GOLD,
+              color: CHARCOAL,
+              border: "none",
+              cursor: "pointer",
+              letterSpacing: "0.25em",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.background = "#CDA35A";
+              (e.currentTarget as HTMLButtonElement).style.transform = "scale(1.04)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.background = GOLD;
+              (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)";
+            }}
+          >
+            Register Now
+          </button>
+        </div>
       </header>
 
       {/* ── Section 1: USPs ─────────────────────────────────── */}
@@ -318,7 +361,7 @@ export function LandingPage() {
       </section>
 
       {/* ── Section 5: Registration Form ────────────────────── */}
-      <section className="w-full py-16 px-4" style={{ background: GREY_BG }}>
+      <section id="register" className="w-full py-16 px-4" style={{ background: GREY_BG }}>
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           {/* Left: Heading + Pine Tree */}
           <div className="flex flex-col justify-center">
