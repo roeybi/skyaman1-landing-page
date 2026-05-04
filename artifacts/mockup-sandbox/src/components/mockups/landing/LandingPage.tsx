@@ -913,6 +913,25 @@ export function LandingPage() {
           </p>
         </div>
 
+        <section className="mt-10 px-4 md:px-12 lg:px-24 text-left">
+          <h2 className="text-3xl md:text-4xl font-light mb-3 tracking-widest" style={{ color: "#3B3329", fontFamily: "'Georgia', serif" }}>
+            Visit Our Agency
+          </h2>
+          <p className="text-sm mb-5" style={{ color: "#4A3728", whiteSpace: "pre-line" }}>
+            Sky Alliance Enterprise
+
+            Lot 17899, Jalan Ayer Jerneh, Taman Ayer Panas, 53200 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur
+          </p>
+          <iframe
+            width="100%"
+            height="450"
+            frameBorder="0"
+            style={{ border: 0, borderRadius: "12px", boxShadow: "0 4px 6px rgba(0, 0, 0, 0.3)" }}
+            src="https://maps.google.com/maps?q=Sky+Alliance+Enterprise,+Lot+17899,+Jalan+Ayer+Jerneh,+Taman+Ayer+Panas,+53200+Kuala+Lumpur&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            allowFullScreen
+          />
+        </section>
+
         {/* Google Ads Disclaimer Block */}
         <div
           className="mt-8 mx-auto max-w-3xl px-6 py-5"
