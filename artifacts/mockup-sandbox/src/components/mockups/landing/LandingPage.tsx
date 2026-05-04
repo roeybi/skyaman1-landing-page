@@ -50,11 +50,11 @@ const floorPlanTabs = ["Type A", "Type B", "Type C1", "Type C2", "Type D1", "Typ
 
 const floorPlanData: Record<string, { builtUp: string; bedrooms: number; bathrooms: number }> = {
   "Type A":  { builtUp: "1,097 sqft", bedrooms: 3, bathrooms: 2 },
-  "Type B":  { builtUp: "1,184 sqft", bedrooms: 3, bathrooms: 2 },
-  "Type C1": { builtUp: "1,302 sqft", bedrooms: 4, bathrooms: 2 },
-  "Type C2": { builtUp: "1,345 sqft", bedrooms: 4, bathrooms: 3 },
-  "Type D1": { builtUp: "1,476 sqft", bedrooms: 4, bathrooms: 3 },
-  "Type D2": { builtUp: "1,548 sqft", bedrooms: 4, bathrooms: 3 },
+  "Type B":  { builtUp: "1,275 sqft", bedrooms: 3, bathrooms: 2 },
+  "Type C1": { builtUp: "1,548 sqft", bedrooms: 4, bathrooms: 3 },
+  "Type C2": { builtUp: "1,541 sqft", bedrooms: 4, bathrooms: 3 },
+  "Type D1": { builtUp: "2,674 sqft", bedrooms: 4, bathrooms: 5 },
+  "Type D2": { builtUp: "2,909 sqft", bedrooms: 4, bathrooms: 5 },
 };
 
 const usps = [
