@@ -1,5 +1,4 @@
 import { useState } from "react";
-import locationImage from "@assets/Location_Sky_Aman_1_Cheras_1777871900170.avif";
 
 const GOLD = "#B8914A";
 const CHARCOAL = "#1C1B1A";
@@ -209,7 +208,7 @@ export function LandingPage() {
           {/* Map Image */}
           <div className="relative overflow-hidden" style={{ minHeight: 420 }}>
             <img
-              src={locationImage}
+              src="/__mockup/location-map.avif"
               alt="Sky Aman 1 Cheras location map"
               className="absolute inset-0 h-full w-full object-cover"
             />
