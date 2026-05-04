@@ -605,7 +605,7 @@ export function LandingPage() {
       <section
         className="hero-bg w-full min-h-screen flex items-center justify-center text-center relative pt-24 md:pt-28"
         style={{
-          backgroundImage: "linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('/__mockup/hero-bg.jpg')",
+          backgroundImage: "url('/__mockup/gallery-entrance.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
