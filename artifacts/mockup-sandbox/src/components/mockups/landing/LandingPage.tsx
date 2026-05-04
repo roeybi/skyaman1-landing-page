@@ -47,6 +47,14 @@ const locationContent: Record<string, string[]> = {
 };
 
 const floorPlanTabs = ["Type A", "Type B", "Type C1", "Type C2", "Type D1", "Type D2"];
+const floorPlanImages: Record<string, string> = {
+  "Type A": "/__mockup/Type_A_Sky_Aman_1_Floor_Plan_1777887439461.avif",
+  "Type B": "/__mockup/Type_B_Sky_Aman_1_Floor_Plan_1777887439460.avif",
+  "Type C1": "/__mockup/Type_C1_Sky_Aman_1_Floor_Plan_1777887439460.avif",
+  "Type C2": "/__mockup/Type_C2_Sky_Aman_1_Floor_Plan_1777887439460.avif",
+  "Type D1": "/__mockup/Type_D1_Sky_Aman_1_Floor_Plan_1777887439459.avif",
+  "Type D2": "/__mockup/Type_D2_Sky_Aman_1_Floor_Plan_1777887439457.avif",
+};
 
 const floorPlanData: Record<string, { builtUp: string; bedrooms: string; bathrooms: number }> = {
   "Type A":  { builtUp: "1,097 sqft", bedrooms: "3", bathrooms: 2 },
@@ -285,19 +293,14 @@ export function LandingPage() {
           </p>
           {/* Floorplan Placeholder */}
           <div
-            className="w-full flex items-center justify-center"
+            className="w-full flex items-center justify-center overflow-hidden"
             style={{ background: DARK_GREY, minHeight: 480, border: `1px solid #3A3330` }}
           >
-            <div className="text-center" style={{ color: "#5A5550" }}>
-              <svg viewBox="0 0 80 80" className="w-20 h-20 mx-auto mb-3 opacity-30">
-                <rect x="8" y="8" width="64" height="64" stroke="currentColor" strokeWidth="2" fill="none" />
-                <path d="M8 32 L72 32" stroke="currentColor" strokeWidth="1.5" />
-                <path d="M8 56 L72 56" stroke="currentColor" strokeWidth="1.5" />
-                <path d="M36 8 L36 72" stroke="currentColor" strokeWidth="1.5" />
-              </svg>
-              <p className="text-sm tracking-widest opacity-50">FLOOR PLAN — {floorTab}</p>
-              <p className="text-xs mt-1 opacity-30">floorplan-placeholder.jpg</p>
-            </div>
+            <img
+              src={floorPlanImages[floorTab]}
+              alt={`${floorTab} floor plan`}
+              className="w-full h-full object-contain"
+            />
           </div>
         </div>
       </section>
