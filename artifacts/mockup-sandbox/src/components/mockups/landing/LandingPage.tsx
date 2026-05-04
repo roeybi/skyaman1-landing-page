@@ -162,6 +162,14 @@ function GoldDivider() {
   return <div className="w-16 h-0.5 mx-auto mt-3" style={{ background: GOLD }} />;
 }
 
+const heroNavLinks = [
+  { label: "Location", href: "#location" },
+  { label: "Floor Plans", href: "#floor-plans" },
+  { label: "Facilities", href: "#facilities" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "Register", href: "#register" },
+];
+
 function LightboxImage({
   src,
   alt,
@@ -557,6 +565,13 @@ export function LandingPage() {
   const [locationTab, setLocationTab] = useState("Surrounding Amenities");
   const [floorTab, setFloorTab] = useState("Type A");
   const [sending, setSending] = useState(false);
+  const [navSolid, setNavSolid] = useState(false);
+
+  if (typeof window !== "undefined") {
+    window.onscroll = () => {
+      setNavSolid(window.scrollY > 20);
+    };
+  }
 
   return (
     <div className="min-h-screen font-sans" style={{ fontFamily: "'Georgia', serif", background: CHARCOAL }}>
@@ -568,29 +583,46 @@ export function LandingPage() {
         The dark overlay below keeps text readable over any image.
       */}
       <header
-        className="hero-bg w-full flex flex-col items-center justify-center text-center relative"
+        id="hero"
+        className={`hero-bg fixed w-full z-50 top-0 transition-all duration-300 ${navSolid ? "bg-black/80 backdrop-blur" : "bg-transparent"}`}
+        style={{ background: navSolid ? "rgba(0,0,0,0.8)" : "transparent" }}
+      >
+        <div className="max-w-7xl mx-auto px-4 md:px-12 lg:px-24 py-5 flex items-center justify-between gap-6">
+          <div className="text-white leading-tight">
+            <div className="text-base md:text-lg tracking-wide font-medium">Sky Alliance Enterprise</div>
+            <div className="text-[10px] md:text-xs tracking-[0.25em] uppercase opacity-90 mt-1">Authorized Appointed Agency</div>
+          </div>
+          <nav className="hidden md:flex items-center gap-6 text-sm tracking-wide text-white">
+            {heroNavLinks.map((link) => (
+              <a key={link.label} href={link.href} className="transition-opacity hover:opacity-80">
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </header>
+
+      <section
+        className="hero-bg w-full min-h-screen flex items-center justify-center text-center relative pt-24 md:pt-28"
         style={{
-          background: `linear-gradient(135deg, ${DARK_BROWN} 0%, ${CHARCOAL} 60%, #1a1510 100%)`,
-          minHeight: 340,
+          backgroundImage: "linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('/__mockup/hero-bg.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       >
-        {/* Dark semi-transparent overlay — keeps text legible over a background image */}
-        <div
-          className="hero-overlay absolute inset-0"
-          style={{ background: "rgba(14,11,8,0.62)", zIndex: 0 }}
-        />
-
-        {/* Content sits above the overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80" />
         <div className="relative z-10 flex flex-col items-center px-4 py-16">
           <div className="text-xs tracking-[0.4em] mb-3" style={{ color: GOLD }}>EXCLUSIVE RESIDENTIAL DEVELOPMENT</div>
           <h1 className="text-4xl md:text-6xl font-bold tracking-wide" style={{ color: BEIGE, letterSpacing: "0.08em" }}>
             SKY AMAN 1
           </h1>
-          <div className="text-2xl md:text-3xl mt-1 font-light tracking-widest" style={{ color: GOLD }}>RESIDENCES</div>
+          <div className="text-2xl md:text-3xl mt-1 font-light tracking-widest" style={{ color: BEIGE }}>RESIDENCES</div>
+          <div className="mt-4 text-2xl md:text-3xl italic" style={{ color: "#FFFFFF", fontFamily: "'Georgia', serif" }}>
+            Living within a Masterpiece of Nature
+          </div>
           <div className="mt-4 w-24 h-px" style={{ background: GOLD }} />
-          <p className="mt-4 text-sm tracking-widest" style={{ color: "#9A8C7E" }}>CHERAS · KUALA LUMPUR</p>
+          <p className="mt-4 text-sm tracking-widest" style={{ color: "#C7B7A5" }}>CHERAS . KUALA LUMPUR</p>
 
-          {/* Register Now CTA */}
           <button
             onClick={() => {
               const el = document.getElementById("register");
@@ -616,10 +648,10 @@ export function LandingPage() {
             Register Now
           </button>
         </div>
-      </header>
+      </section>
 
       {/* ── Section 1: USPs ─────────────────────────────────── */}
-      <section className="w-full py-16 px-4" style={{ background: CHARCOAL }}>
+      <section id="gallery" className="w-full py-16 px-4" style={{ background: CHARCOAL }}>
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {usps.map((usp, i) => (
             <div
@@ -651,7 +683,7 @@ export function LandingPage() {
       </section>
 
       {/* ── Section 3: Location ─────────────────────────────── */}
-      <section className="w-full py-16" style={{ background: GREY_BG }}>
+      <section id="location" className="w-full py-16" style={{ background: GREY_BG }}>
         <h2 className="text-4xl text-center font-light mb-2 tracking-widest" style={{ color: "#3B3329", fontFamily: "'Georgia', serif" }}>
           Location
         </h2>
@@ -704,7 +736,7 @@ export function LandingPage() {
       </section>
 
       {/* ── Section 3: Floor Plan ───────────────────────────── */}
-      <section className="w-full py-16 px-4" style={{ background: CHARCOAL }}>
+      <section id="floor-plans" className="w-full py-16 px-4" style={{ background: CHARCOAL }}>
         <h2 className="text-4xl text-center font-light mb-2 tracking-widest" style={{ color: BEIGE, fontFamily: "'Georgia', serif" }}>
           Floor Plan
         </h2>
@@ -748,7 +780,7 @@ export function LandingPage() {
       </section>
 
       {/* ── Section 4: Facilities ───────────────────────────── */}
-      <section className="w-full py-16 px-4" style={{ background: DARK_GREY }}>
+      <section id="facilities" className="w-full py-16 px-4" style={{ background: DARK_GREY }}>
         <h2 className="text-4xl text-center font-light mb-2 tracking-widest" style={{ color: BEIGE, fontFamily: "'Georgia', serif" }}>
           Facilities
         </h2>
