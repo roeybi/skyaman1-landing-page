@@ -1,0 +1,105 @@
+Act as an expert frontend developer. Please build a responsive real estate lead-generation landing page for Sky Aman 1 Residences. I want you to use HTML5, Tailwind CSS for styling, and Vanilla JS for interactive elements like tabs.
+
+The color palette should lean towards elegance: dark charcoal/brown backgrounds, light beige/gray for soft sections, and gold/wood-toned accents. Please set up the project with three separate HTML files: index.html (the main landing page), privacy.html (Privacy Policy), and thank-you.html (Thank You page).
+
+CRITICAL REQUIREMENT: This site will be used for Google Ads, so strict compliance with Google's destination and transparency policies is required.
+
+Here are the specific requirements for the main landing page (index.html), section by section:
+
+Section 1: USPs (Unique Selling Propositions)
+
+Layout: A 4-column grid on desktop, 1-column on mobile. Dark charcoal background.
+
+Styling: Each USP should look like a framed box (thin gold/wood-colored border). Include a placeholder for an icon at the top of each box.
+
+Content:
+
+Icon + "Low Density with Residential Title"
+
+Icon + "Wide Frontage with North-South Orientation from 1,097 - 1,548sq.ft."
+
+Icon + "Adjacent to the MRT Station"
+
+Icon + "Direct Car Park Access for Added Convenience"
+
+Section 2: Location
+
+Header: "Location" centered in a large, elegant beige font.
+
+Layout: A 2-column split (50/50).
+
+Left Column: A placeholder image for the area map (map-placeholder.jpg).
+
+Right Column: Dark background with a tabbed interface. Tabs: "Shopping Mall", "Health Centers", "Surrounding Amenities", "Education".
+
+Tab Content (Surrounding Amenities):
+
+KETUMBAR HILLS
+
+BUBBLE SPORTS COMPLEX CHERAS
+
+TAMAN TASIK PERMAISURI
+
+ALAM DAMAI RECREATION PARK
+
+STADIUM KUALA LUMPUR
+
+TAMAN PUDU ULU
+
+Section 3: Floor Plan
+
+Header: "Floor Plan"
+
+Tabs: Create dark grey, pill-shaped tabs for "Type A", "Type B", "Type C1", "Type C2", "Type D1", and "Type D2".
+
+Active Tab Layout (Type A):
+
+Show the title "Type A", followed by BUILT-UP: 1,097 sqft | BEDROOMS: 3 | BATHROOMS: 2.
+
+Image: A large placeholder space (floorplan-placeholder.jpg).
+
+Write Vanilla JS to ensure clicking different tabs hides/shows the respective content.
+
+Section 4: Facilities
+
+Layout: Split layout. Left side contains lists of facilities, right side contains a placeholder for the Facilities Plan map (facilities-placeholder.jpg). Dark grey background.
+
+Lists:
+
+Ground Floor: 1. Entrance Statement, 2. Drop-Off Area, 3. Terrace Garden, 4. Creek Deck, 5. Fitness Point, 6. Playground, 7. Urban Farm.
+
+Level 5, 6 & 6A: 8. Indoor Sports Centre, 9. Sauna Retreat, 10. Cyber Den, 11. Co-Working Suite.
+
+LEVEL 7 & 8: 12. Swimming Pool, 13. Jacuzzi, 14. Wading Pool, 15. Multipurpose Hall, 16. Bonsai Garden, 17. Garden Lanai, 18. Playground, 19. Reading Rooms.
+
+LEVEL 43: 20. Gymnasium, 21. Qi Chamber, 22. Reflexology Path, 23. Horizon Deck, 24. BBQ Area.
+
+Section 5: Registration Form (Must be visually secure)
+
+Layout: Light grey background. Left side has a large heading "Be the first to know: Register Now" with a decorative pine tree graphic placeholder. Right side has the form.
+
+Form Fields: First Name, Last Name, Email (must have 'required' and 'type=email' attributes), Phone (must have 'required' attribute), and Message (textarea).
+
+Compliance Checkbox: Must include a mandatory checkbox (required attribute) with the text: "I agree to the Privacy Policy and consent to Sky Alliance Enterprise contacting me regarding my inquiry. View Privacy Policy" (Link this to privacy.html).
+
+Submit Button: A dark brown "Send" button. Form action should redirect to thank-you.html.
+
+Section 6: Footer & Disclaimer (Crucial for Ad Policy)
+
+Background: Muted beige/taupe color. Center aligned text.
+
+Content:
+
+Logo placeholder for "Sky Alliance TITAN".
+
+Text: "Sky Alliance Enterprise (202603044120) (IP0620548-A)"
+
+Text: "Company Address: Lot 17899, Jalan Ayer Jerneh, Tama Ayer Panas, 53200 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur"
+
+Text: "Contact Number: 017-2130 612 | Email: jaysonmjs@skyworld.my"
+
+Text: "© 2026 to SkyAman 1 Residences. All Rights Reserved. Privacy Policy" (Link to privacy.html).
+
+Google Ads Disclaimer: Below the standard footer, add a highly legible, distinct block (do not use tiny text). Italicized text: "Disclaimer: This website is independently operated by a real estate agent from appointed agency Sky Alliance Enterprise, and is not the official website of the developer. All information provided is for reference only."
+
+Please generate the complete, production-ready code."
