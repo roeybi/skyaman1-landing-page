@@ -224,6 +224,173 @@ function LightboxImage({
   );
 }
 
+const galleryImages = [
+  { src: "/__mockup/gallery-1.jpg", alt: "Sky Aman 1 – Gallery 1" },
+  { src: "/__mockup/gallery-2.jpg", alt: "Sky Aman 1 – Gallery 2" },
+  { src: "/__mockup/gallery-3.jpg", alt: "Sky Aman 1 – Gallery 3" },
+  { src: "/__mockup/gallery-4.jpg", alt: "Sky Aman 1 – Gallery 4" },
+  { src: "/__mockup/gallery-5.jpg", alt: "Sky Aman 1 – Gallery 5" },
+  { src: "/__mockup/gallery-6.jpg", alt: "Sky Aman 1 – Gallery 6" },
+  { src: "/__mockup/gallery-7.jpg", alt: "Sky Aman 1 – Gallery 7" },
+  { src: "/__mockup/gallery-8.jpg", alt: "Sky Aman 1 – Gallery 8" },
+];
+
+function GalleryPlaceholder({ index }: { index: number }) {
+  return (
+    <div
+      className="w-full h-full flex flex-col items-center justify-center"
+      style={{ background: "#1E1D1C" }}
+    >
+      <svg viewBox="0 0 64 64" className="w-10 h-10 mb-2 opacity-25">
+        <rect x="4" y="4" width="56" height="56" rx="4" stroke={GOLD} strokeWidth="1.5" fill="none" />
+        <circle cx="22" cy="22" r="6" stroke={GOLD} strokeWidth="1.5" fill="none" />
+        <path d="M4 44 L20 28 L34 40 L44 30 L60 44" stroke={GOLD} strokeWidth="1.5" fill="none" strokeLinejoin="round" />
+      </svg>
+      <span className="text-xs tracking-[0.2em] uppercase opacity-30" style={{ color: GOLD }}>
+        Gallery {index}
+      </span>
+    </div>
+  );
+}
+
+function Gallery() {
+  const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
+
+  const close = () => setLightboxIdx(null);
+  const prev = () => setLightboxIdx((i) => (i !== null ? (i - 1 + galleryImages.length) % galleryImages.length : null));
+  const next = () => setLightboxIdx((i) => (i !== null ? (i + 1) % galleryImages.length : null));
+
+  return (
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mt-10">
+        {galleryImages.map((img, i) => (
+          <div
+            key={i}
+            className="aspect-square overflow-hidden cursor-pointer"
+            style={{
+              borderRadius: 6,
+              border: "1.5px solid transparent",
+              transition: "border-color 0.2s, transform 0.2s",
+            }}
+            onClick={() => setLightboxIdx(i)}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLDivElement).style.borderColor = GOLD;
+              (e.currentTarget as HTMLDivElement).style.transform = "scale(1.025)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLDivElement).style.borderColor = "transparent";
+              (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
+            }}
+          >
+            <img
+              src={img.src}
+              alt={img.alt}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).style.display = "none";
+                const parent = (e.currentTarget as HTMLImageElement).parentElement;
+                if (parent && !parent.querySelector(".gallery-placeholder")) {
+                  const ph = document.createElement("div");
+                  ph.className = "gallery-placeholder w-full h-full";
+                  ph.style.height = "100%";
+                  parent.appendChild(ph);
+                }
+              }}
+            />
+            <GalleryPlaceholder index={i + 1} />
+          </div>
+        ))}
+      </div>
+
+      {/* Lightbox */}
+      {lightboxIdx !== null && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          style={{ background: "rgba(0,0,0,0.93)" }}
+          onClick={close}
+        >
+          {/* Close */}
+          <button
+            onClick={close}
+            className="absolute top-4 right-4 flex items-center justify-center z-50"
+            style={{
+              background: "rgba(30,29,28,0.9)",
+              border: `1px solid ${GOLD}`,
+              color: GOLD,
+              width: 44,
+              height: 44,
+              borderRadius: "50%",
+              cursor: "pointer",
+              fontSize: 20,
+              lineHeight: 1,
+            }}
+            aria-label="Close"
+          >
+            ✕
+          </button>
+
+          {/* Prev */}
+          <button
+            onClick={(e) => { e.stopPropagation(); prev(); }}
+            className="absolute left-4 top-1/2 flex items-center justify-center"
+            style={{
+              transform: "translateY(-50%)",
+              background: "rgba(30,29,28,0.85)",
+              border: `1px solid ${GOLD}`,
+              color: GOLD,
+              width: 44,
+              height: 44,
+              borderRadius: "50%",
+              cursor: "pointer",
+              fontSize: 20,
+            }}
+            aria-label="Previous"
+          >
+            ‹
+          </button>
+
+          {/* Image */}
+          <img
+            src={galleryImages[lightboxIdx].src}
+            alt={galleryImages[lightboxIdx].alt}
+            className="max-w-full max-h-full object-contain"
+            style={{ padding: "4rem 5rem", cursor: "default" }}
+            onClick={(e) => e.stopPropagation()}
+          />
+
+          {/* Next */}
+          <button
+            onClick={(e) => { e.stopPropagation(); next(); }}
+            className="absolute right-4 top-1/2 flex items-center justify-center"
+            style={{
+              transform: "translateY(-50%)",
+              background: "rgba(30,29,28,0.85)",
+              border: `1px solid ${GOLD}`,
+              color: GOLD,
+              width: 44,
+              height: 44,
+              borderRadius: "50%",
+              cursor: "pointer",
+              fontSize: 20,
+            }}
+            aria-label="Next"
+          >
+            ›
+          </button>
+
+          {/* Counter */}
+          <div
+            className="absolute bottom-4 left-1/2 text-xs tracking-widest"
+            style={{ transform: "translateX(-50%)", color: "#9A8E80" }}
+          >
+            {lightboxIdx + 1} / {galleryImages.length}
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
 const facilityTabs = Object.keys(facilityTabData);
 
 function FacilitiesSection() {
@@ -453,7 +620,18 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* ── Section 2: Location ─────────────────────────────── */}
+      {/* ── Section 2: Gallery ──────────────────────────────── */}
+      <section className="w-full py-16 px-4" style={{ background: DARK_GREY }}>
+        <h2 className="text-4xl text-center font-light mb-2 tracking-widest" style={{ color: BEIGE, fontFamily: "'Georgia', serif" }}>
+          Gallery
+        </h2>
+        <GoldDivider />
+        <div className="max-w-6xl mx-auto">
+          <Gallery />
+        </div>
+      </section>
+
+      {/* ── Section 3: Location ─────────────────────────────── */}
       <section className="w-full py-16" style={{ background: GREY_BG }}>
         <h2 className="text-4xl text-center font-light mb-2 tracking-widest" style={{ color: "#3B3329", fontFamily: "'Georgia', serif" }}>
           Location
