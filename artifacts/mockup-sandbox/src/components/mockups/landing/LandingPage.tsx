@@ -106,12 +106,45 @@ const usps = [
   },
 ];
 
-const facilityGrounds = [
-  { label: "Ground Floor", items: ["Entrance Statement", "Drop-Off Area", "Terrace Garden", "Creek Deck", "Fitness Point", "Playground", "Urban Farm"] },
-  { label: "Level 5, 6 & 6A", items: ["Indoor Sports Centre", "Sauna Retreat", "Cyber Den", "Co-Working Suite"] },
-  { label: "Level 7 & 8", items: ["Swimming Pool", "Jacuzzi", "Wading Pool", "Multipurpose Hall", "Bonsai Garden", "Garden Lanai", "Playground", "Reading Rooms"] },
-  { label: "Level 43", items: ["Gymnasium", "Qi Chamber", "Reflexology Path", "Horizon Deck", "BBQ Area"] },
-];
+const facilityTabData: Record<string, {
+  src: string;
+  groups: { label: string; color: string; startNum: number; items: string[] }[];
+}> = {
+  "Ground Floor": {
+    src: "/__mockup/facility-g-floor.png",
+    groups: [
+      {
+        label: "Ground Floor",
+        color: "#8B1A1A",
+        startNum: 1,
+        items: ["Entrance Statement", "Drop-Off Area", "Terrace Garden", "Creek Deck", "Fitness Point", "Playground", "Urban Farm"],
+      },
+      {
+        label: "Level 5, 6 & 6A",
+        color: "#1E3A6E",
+        startNum: 8,
+        items: ["Indoor Sports Centre", "Sauna Retreat", "Cyber Den", "Co-Working Suites"],
+      },
+    ],
+  },
+  "Podium Deck": {
+    src: "/__mockup/facility-podium.png",
+    groups: [
+      {
+        label: "Level 7 & 8",
+        color: "#2D6A4F",
+        startNum: 12,
+        items: ["Swimming Pool", "Jacuzzi", "Wading Pool", "Multipurpose Hall", "Bonsai Garden", "Garden Lanai", "Playground", "Reading Rooms"],
+      },
+      {
+        label: "Level 43",
+        color: "#6B3FA0",
+        startNum: 20,
+        items: ["Gymnasium", "Qi Chamber", "Reflexology Path", "Horizon Deck", "BBQ Area"],
+      },
+    ],
+  },
+};
 
 function GoldDivider() {
   return <div className="w-16 h-0.5 mx-auto mt-3" style={{ background: GOLD }} />;
@@ -191,37 +224,60 @@ function LightboxImage({
   );
 }
 
-const facilityPlans = [
-  { label: "Ground Floor", src: "/__mockup/facility-g-floor.png" },
-  { label: "Podium Deck", src: "/__mockup/facility-podium.png" },
-];
+const facilityTabs = Object.keys(facilityTabData);
 
-function FacilitiesPlan() {
-  const [active, setActive] = useState(0);
+function FacilitiesSection() {
+  const [activeTab, setActiveTab] = useState(facilityTabs[0]);
   const [lightbox, setLightbox] = useState(false);
-
-  const openLightbox = () => setLightbox(true);
-  const closeLightbox = () => setLightbox(false);
+  const current = facilityTabData[activeTab];
 
   return (
-    <>
-      {/* Card */}
+    <div className="max-w-6xl mx-auto mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+
+      {/* Left: Facility list — synced to active tab */}
+      <div className="space-y-8">
+        {current.groups.map((group) => (
+          <div key={group.label}>
+            <h4
+              className="text-base font-bold mb-4 tracking-wide"
+              style={{ color: BEIGE, fontFamily: "'Georgia', serif", fontStyle: "italic" }}
+            >
+              {group.label}
+            </h4>
+            <div className="grid grid-cols-2 gap-x-6 gap-y-2">
+              {group.items.map((item, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <span
+                    className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold"
+                    style={{ background: group.color, color: "#fff" }}
+                  >
+                    {group.startNum + i}
+                  </span>
+                  <span className="text-sm" style={{ color: "#C8C2B5" }}>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Right: Tabbed image panel */}
       <div className="flex flex-col" style={{ background: "#1E1D1C", border: `1px solid #3A3330` }}>
         {/* Tabs */}
         <div className="flex">
-          {facilityPlans.map((plan, i) => (
+          {facilityTabs.map((tab) => (
             <button
-              key={plan.label}
-              onClick={() => setActive(i)}
+              key={tab}
+              onClick={() => setActiveTab(tab)}
               className="flex-1 py-3 text-xs tracking-[0.25em] uppercase font-bold transition-colors"
               style={{
-                background: active === i ? "#2D2D2D" : "#1E1D1C",
-                color: active === i ? GOLD : "#6A635A",
-                borderBottom: active === i ? `2px solid ${GOLD}` : "2px solid transparent",
+                background: activeTab === tab ? "#2D2D2D" : "#1E1D1C",
+                color: activeTab === tab ? GOLD : "#6A635A",
+                borderBottom: activeTab === tab ? `2px solid ${GOLD}` : "2px solid transparent",
                 cursor: "pointer",
               }}
             >
-              {plan.label}
+              {tab}
             </button>
           ))}
         </div>
@@ -229,16 +285,15 @@ function FacilitiesPlan() {
         {/* Image — click to open fullscreen */}
         <div
           className="flex items-center justify-center p-4 relative group"
-          style={{ minHeight: 440, cursor: "zoom-in" }}
-          onClick={openLightbox}
+          style={{ minHeight: 420, cursor: "zoom-in" }}
+          onClick={() => setLightbox(true)}
         >
           <img
-            src={facilityPlans[active].src}
-            alt={facilityPlans[active].label + " facility plan"}
+            src={current.src}
+            alt={activeTab + " facility plan"}
             className="w-full h-auto object-contain"
-            style={{ maxHeight: 440 }}
+            style={{ maxHeight: 420 }}
           />
-          {/* Hover hint */}
           <div
             className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
             style={{ background: "rgba(0,0,0,0.35)" }}
@@ -258,11 +313,10 @@ function FacilitiesPlan() {
         <div
           className="fixed inset-0 z-50 flex items-center justify-center"
           style={{ background: "rgba(0,0,0,0.93)" }}
-          onClick={closeLightbox}
+          onClick={() => setLightbox(false)}
         >
-          {/* Close button — visible on all screen sizes */}
           <button
-            onClick={closeLightbox}
+            onClick={() => setLightbox(false)}
             className="absolute top-4 right-4 flex items-center justify-center z-50"
             style={{
               background: "#1E1D1C",
@@ -279,41 +333,37 @@ function FacilitiesPlan() {
           >
             ✕
           </button>
-
-          {/* Tab bar inside lightbox */}
           <div
             className="absolute top-4 left-1/2 flex gap-2"
             style={{ transform: "translateX(-50%)" }}
             onClick={(e) => e.stopPropagation()}
           >
-            {facilityPlans.map((plan, i) => (
+            {facilityTabs.map((tab) => (
               <button
-                key={plan.label}
-                onClick={() => setActive(i)}
+                key={tab}
+                onClick={() => setActiveTab(tab)}
                 className="px-4 py-1.5 text-xs tracking-[0.2em] uppercase font-bold transition-colors"
                 style={{
-                  background: active === i ? GOLD : "rgba(30,29,28,0.85)",
-                  color: active === i ? "#1E1D1C" : "#9A8E80",
-                  border: `1px solid ${active === i ? GOLD : "#3A3330"}`,
+                  background: activeTab === tab ? GOLD : "rgba(30,29,28,0.85)",
+                  color: activeTab === tab ? "#1E1D1C" : "#9A8E80",
+                  border: `1px solid ${activeTab === tab ? GOLD : "#3A3330"}`,
                   cursor: "pointer",
                 }}
               >
-                {plan.label}
+                {tab}
               </button>
             ))}
           </div>
-
-          {/* Full-res image */}
           <img
-            src={facilityPlans[active].src}
-            alt={facilityPlans[active].label + " facility plan"}
+            src={current.src}
+            alt={activeTab + " facility plan"}
             className="max-w-full max-h-full object-contain"
             style={{ padding: "4rem 1.5rem 1.5rem", cursor: "default" }}
             onClick={(e) => e.stopPropagation()}
           />
         </div>
       )}
-    </>
+    </div>
   );
 }
 
@@ -321,8 +371,6 @@ export function LandingPage() {
   const [locationTab, setLocationTab] = useState("Surrounding Amenities");
   const [floorTab, setFloorTab] = useState("Type A");
   const [sending, setSending] = useState(false);
-
-  let itemNumber = 1;
 
   return (
     <div className="min-h-screen font-sans" style={{ fontFamily: "'Georgia', serif", background: CHARCOAL }}>
@@ -508,36 +556,7 @@ export function LandingPage() {
           Facilities
         </h2>
         <GoldDivider />
-
-        <div className="max-w-6xl mx-auto mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Facility Lists */}
-          <div className="space-y-6">
-            {facilityGrounds.map((group) => {
-              const startNum = itemNumber;
-              itemNumber += group.items.length;
-              return (
-                <div key={group.label}>
-                  <h4 className="text-xs tracking-[0.3em] font-bold mb-3 uppercase" style={{ color: GOLD }}>
-                    {group.label}
-                  </h4>
-                  <ul className="space-y-1.5">
-                    {group.items.map((item, i) => (
-                      <li key={i} className="flex items-center gap-3 text-sm" style={{ color: "#C8C2B5" }}>
-                        <span className="text-xs font-bold w-5 text-right flex-shrink-0" style={{ color: GOLD }}>
-                          {startNum + i}.
-                        </span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Facilities Plan Images */}
-          <FacilitiesPlan />
-        </div>
+        <FacilitiesSection />
       </section>
 
       {/* ── Section 5: Registration Form ────────────────────── */}
