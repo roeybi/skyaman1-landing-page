@@ -117,6 +117,46 @@ function GoldDivider() {
   return <div className="w-16 h-0.5 mx-auto mt-3" style={{ background: GOLD }} />;
 }
 
+const facilityPlans = [
+  { label: "Ground Floor", src: "/__mockup/facility-g-floor.png" },
+  { label: "Podium Deck", src: "/__mockup/facility-podium.png" },
+];
+
+function FacilitiesPlan() {
+  const [active, setActive] = useState(0);
+  return (
+    <div className="flex flex-col" style={{ background: "#1E1D1C", border: `1px solid #3A3330` }}>
+      {/* Tabs */}
+      <div className="flex">
+        {facilityPlans.map((plan, i) => (
+          <button
+            key={plan.label}
+            onClick={() => setActive(i)}
+            className="flex-1 py-3 text-xs tracking-[0.25em] uppercase font-bold transition-colors"
+            style={{
+              background: active === i ? "#2D2D2D" : "#1E1D1C",
+              color: active === i ? GOLD : "#6A635A",
+              borderBottom: active === i ? `2px solid ${GOLD}` : "2px solid transparent",
+              cursor: "pointer",
+            }}
+          >
+            {plan.label}
+          </button>
+        ))}
+      </div>
+      {/* Image */}
+      <div className="flex items-center justify-center p-4" style={{ minHeight: 440 }}>
+        <img
+          src={facilityPlans[active].src}
+          alt={facilityPlans[active].label + " facility plan"}
+          className="w-full h-auto object-contain"
+          style={{ maxHeight: 440 }}
+        />
+      </div>
+    </div>
+  );
+}
+
 export function LandingPage() {
   const [locationTab, setLocationTab] = useState("Surrounding Amenities");
   const [floorTab, setFloorTab] = useState("Type A");
@@ -338,23 +378,8 @@ export function LandingPage() {
             })}
           </div>
 
-          {/* Facilities Plan Placeholder */}
-          <div
-            className="flex items-center justify-center"
-            style={{ background: "#252525", border: `1px solid #3A3330`, minHeight: 480 }}
-          >
-            <div className="text-center" style={{ color: "#5A5550" }}>
-              <svg viewBox="0 0 80 80" className="w-20 h-20 mx-auto mb-3 opacity-30">
-                <rect x="8" y="8" width="64" height="64" stroke="currentColor" strokeWidth="2" fill="none" />
-                <rect x="16" y="16" width="20" height="20" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                <rect x="44" y="16" width="20" height="20" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                <rect x="16" y="44" width="20" height="20" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                <rect x="44" y="44" width="20" height="20" stroke="currentColor" strokeWidth="1.5" fill="none" />
-              </svg>
-              <p className="text-sm tracking-widest opacity-50">FACILITIES PLAN</p>
-              <p className="text-xs mt-1 opacity-30">facilities-placeholder.jpg</p>
-            </div>
-          </div>
+          {/* Facilities Plan Images */}
+          <FacilitiesPlan />
         </div>
       </section>
 
