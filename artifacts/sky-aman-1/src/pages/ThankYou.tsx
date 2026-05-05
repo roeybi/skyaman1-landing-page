@@ -60,7 +60,7 @@ export function ThankYou() {
         </div>
 
         <a
-          href="/"
+          href={import.meta.env.BASE_URL}
           className="mt-10 inline-block px-8 py-3 text-xs tracking-widest uppercase transition-opacity hover:opacity-80"
           style={{ border: `1px solid ${GOLD}`, color: GOLD }}
         >

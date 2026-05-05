@@ -9,7 +9,7 @@ function NotFound() {
       <div className="text-center">
         <p className="text-sm tracking-widest" style={{ color: "#B8914A" }}>404</p>
         <h1 className="text-2xl font-light mt-2" style={{ color: "#F2EDE3" }}>Page not found</h1>
-        <a href="/" className="inline-block mt-6 text-xs tracking-widest underline" style={{ color: "#B8914A" }}>Return to Home</a>
+        <a href={import.meta.env.BASE_URL} className="inline-block mt-6 text-xs tracking-widest underline" style={{ color: "#B8914A" }}>Return to Home</a>
       </div>
     </div>
   );

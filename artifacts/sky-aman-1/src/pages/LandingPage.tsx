@@ -518,9 +518,9 @@ export function LandingPage() {
                 <input type="checkbox" required id="consent" className="mt-1 flex-shrink-0" style={{ accentColor: DARK_BROWN }} />
                 <label htmlFor="consent" className="text-xs leading-relaxed" style={{ color: "#5A5040" }}>
                   I agree to the{" "}
-                  <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: DARK_BROWN, textDecoration: "underline" }}>Privacy Policy</a>
+                  <a href={`${BASE}privacy`} target="_blank" rel="noopener noreferrer" style={{ color: DARK_BROWN, textDecoration: "underline" }}>Privacy Policy</a>
                   {" "}and consent to Sky Alliance Enterprise contacting me regarding my inquiry.{" "}
-                  <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: DARK_BROWN, textDecoration: "underline" }}>View Privacy Policy</a>
+                  <a href={`${BASE}privacy`} target="_blank" rel="noopener noreferrer" style={{ color: DARK_BROWN, textDecoration: "underline" }}>View Privacy Policy</a>
                 </label>
               </div>
               <button
@@ -547,7 +547,7 @@ export function LandingPage() {
           <p className="text-xs" style={{ color: "#6A5848" }}>Contact Number: 017-2130 612 (Franky) &nbsp;|&nbsp; Email: skyalliance.acc@gmail.com</p>
           <p className="text-xs mt-4" style={{ color: "#6A5848" }}>
             © 2026 Sky Aman 1 Residences. All Rights Reserved.{" "}
-            <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "#4A3728", textDecoration: "underline" }}>Privacy Policy</a>
+            <a href={`${BASE}privacy`} target="_blank" rel="noopener noreferrer" style={{ color: "#4A3728", textDecoration: "underline" }}>Privacy Policy</a>
           </p>
         </div>
 
