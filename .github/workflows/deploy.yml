@@ -38,7 +38,7 @@ jobs:
       - name: Build
         env:
           PORT: 3000
-          BASE_PATH: /skyaman1-landing-page/
+          BASE_PATH: /
         run: pnpm --filter @workspace/sky-aman-1 run build
 
       - name: Create SPA route files
