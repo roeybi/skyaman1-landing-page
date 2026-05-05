@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+const BASE = import.meta.env.BASE_URL;
+
 const GOLD = "#B8914A";
 const CHARCOAL = "#1C1B1A";
 const DARK_BROWN = "#2A1F17";
@@ -20,12 +22,12 @@ const locationContent: Record<string, string[]> = {
 
 const floorPlanTabs = ["Type A", "Type B", "Type C1", "Type C2", "Type D1", "Type D2"];
 const floorPlanImages: Record<string, string> = {
-  "Type A": "/Type_A_Sky_Aman_1_Floor_Plan_1777887439461.avif",
-  "Type B": "/Type_B_Sky_Aman_1_Floor_Plan_1777887439460.avif",
-  "Type C1": "/Type_C1_Sky_Aman_1_Floor_Plan_1777887439460.avif",
-  "Type C2": "/Type_C2_Sky_Aman_1_Floor_Plan_1777887439460.avif",
-  "Type D1": "/Type_D1_Sky_Aman_1_Floor_Plan_1777887439459.avif",
-  "Type D2": "/Type_D2_Sky_Aman_1_Floor_Plan_1777887439457.avif",
+  "Type A": `${BASE}Type_A_Sky_Aman_1_Floor_Plan_1777887439461.avif`,
+  "Type B": `${BASE}Type_B_Sky_Aman_1_Floor_Plan_1777887439460.avif`,
+  "Type C1": `${BASE}Type_C1_Sky_Aman_1_Floor_Plan_1777887439460.avif`,
+  "Type C2": `${BASE}Type_C2_Sky_Aman_1_Floor_Plan_1777887439460.avif`,
+  "Type D1": `${BASE}Type_D1_Sky_Aman_1_Floor_Plan_1777887439459.avif`,
+  "Type D2": `${BASE}Type_D2_Sky_Aman_1_Floor_Plan_1777887439457.avif`,
 };
 
 const floorPlanData: Record<string, { builtUp: string; bedrooms: string; bathrooms: number }> = {
@@ -95,7 +97,7 @@ const facilityTabData: Record<string, {
   groups: { label: string; color: string; startNum: number; items: string[] }[];
 }> = {
   "Ground Floor": {
-    src: "/facility-g-floor.png",
+    src: `${BASE}facility-g-floor.png`,
     groups: [
       {
         label: "Ground Floor",
@@ -112,7 +114,7 @@ const facilityTabData: Record<string, {
     ],
   },
   "Podium Deck": {
-    src: "/facility-podium.png",
+    src: `${BASE}facility-podium.png`,
     groups: [
       {
         label: "Level 7 & 8",
@@ -202,14 +204,14 @@ function LightboxImage({
 }
 
 const galleryImages = [
-  { src: "/gallery-rooftop-facade.png",       label: "Rooftop Facade" },
-  { src: "/gallery-swimming-pool.png",        label: "Swimming Pool With Eternity Portal Reflection" },
-  { src: "/gallery-facilities-overview.png",  label: "Facilities Overview" },
-  { src: "/gallery-lanai-bonsai.png",         label: "Lanai Overlooking Bonsai Garden" },
-  { src: "/gallery-aman-park.png",            label: "Aman Park" },
-  { src: "/gallery-gym.png",                  label: "Gym" },
-  { src: "/gallery-creek-deck.png",           label: "Cascading Water With Creek Deck" },
-  { src: "/gallery-entrance.png",             label: "Entrance Statement" },
+  { src: `${BASE}gallery-rooftop-facade.png`,       label: "Rooftop Facade" },
+  { src: `${BASE}gallery-swimming-pool.png`,        label: "Swimming Pool With Eternity Portal Reflection" },
+  { src: `${BASE}gallery-facilities-overview.png`,  label: "Facilities Overview" },
+  { src: `${BASE}gallery-lanai-bonsai.png`,         label: "Lanai Overlooking Bonsai Garden" },
+  { src: `${BASE}gallery-aman-park.png`,            label: "Aman Park" },
+  { src: `${BASE}gallery-gym.png`,                  label: "Gym" },
+  { src: `${BASE}gallery-creek-deck.png`,           label: "Cascading Water With Creek Deck" },
+  { src: `${BASE}gallery-entrance.png`,             label: "Entrance Statement" },
 ];
 
 function Gallery() {
@@ -349,7 +351,7 @@ export function LandingPage() {
       {/* ── Hero ─────────────────────────────────────────── */}
       <section
         className="w-full min-h-screen flex items-center justify-center text-center relative pt-24 md:pt-28"
-        style={{ backgroundImage: "url('/gallery-entrance.png')", backgroundSize: "cover", backgroundPosition: "center" }}
+        style={{ backgroundImage: `url('${BASE}gallery-entrance.png')`, backgroundSize: "cover", backgroundPosition: "center" }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80" />
         <div className="relative z-10 flex flex-col items-center px-4 py-16">
@@ -396,7 +398,7 @@ export function LandingPage() {
         <GoldDivider />
         <div className="max-w-6xl mx-auto mt-10 grid grid-cols-1 md:grid-cols-2 gap-0">
           <LightboxImage
-            src="/location-map.avif"
+            src={`${BASE}location-map.avif`}
             alt="Sky Aman 1 Cheras location map"
             className="absolute inset-0 h-full w-full object-cover"
             wrapperClassName="relative overflow-hidden"
@@ -537,7 +539,7 @@ export function LandingPage() {
       {/* ── Footer ───────────────────────────────────────── */}
       <footer className="w-full py-12 px-4 text-center" style={{ background: FOOTER_BG }}>
         <div className="flex justify-center mb-6">
-          <img src="/skyalliance-logo.avif" alt="Sky Alliance Enterprise" className="h-20 w-auto object-contain" />
+          <img src={`${BASE}skyalliance-logo.avif`} alt="Sky Alliance Enterprise" className="h-20 w-auto object-contain" />
         </div>
         <div className="space-y-2 text-sm" style={{ color: "#4A3728" }}>
           <p className="font-semibold tracking-wide">Sky Alliance Enterprise (202603044120) (IP0620548-A)</p>
