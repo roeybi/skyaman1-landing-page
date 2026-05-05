@@ -41,8 +41,14 @@ jobs:
           BASE_PATH: /skyaman1-landing-page/
         run: pnpm --filter @workspace/sky-aman-1 run build
 
-      - name: Copy index.html to 404.html (SPA routing)
-        run: cp artifacts/sky-aman-1/dist/public/index.html artifacts/sky-aman-1/dist/public/404.html
+      - name: Create SPA route files
+        run: |
+          INDEX=artifacts/sky-aman-1/dist/public/index.html
+          cp "$INDEX" artifacts/sky-aman-1/dist/public/404.html
+          mkdir -p artifacts/sky-aman-1/dist/public/thank-you
+          cp "$INDEX" artifacts/sky-aman-1/dist/public/thank-you/index.html
+          mkdir -p artifacts/sky-aman-1/dist/public/privacy
+          cp "$INDEX" artifacts/sky-aman-1/dist/public/privacy/index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
