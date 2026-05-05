@@ -319,6 +319,7 @@ export function LandingPage() {
   const [floorTab, setFloorTab] = useState("Type A");
   const [sending, setSending] = useState(false);
   const [navSolid, setNavSolid] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setNavSolid(window.scrollY > 20);
@@ -332,20 +333,47 @@ export function LandingPage() {
       {/* ── Fixed Nav ─────────────────────────────────────── */}
       <header
         id="hero"
-        className={`fixed w-full z-50 top-0 transition-all duration-300`}
-        style={{ background: navSolid ? "rgba(0,0,0,0.85)" : "transparent", backdropFilter: navSolid ? "blur(8px)" : "none" }}
+        className="fixed w-full z-50 top-0 transition-all duration-300"
+        style={{ background: navSolid || menuOpen ? "rgba(0,0,0,0.92)" : "transparent", backdropFilter: navSolid || menuOpen ? "blur(8px)" : "none" }}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-12 lg:px-24 py-5 flex items-center justify-between gap-6">
           <div className="text-white leading-tight">
             <div className="text-base md:text-lg tracking-wide font-medium">Sky Alliance Enterprise</div>
             <div className="text-[10px] md:text-xs tracking-[0.25em] uppercase opacity-90 mt-1">Authorized Appointed Agency</div>
           </div>
+          {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-6 text-sm tracking-wide text-white">
             {heroNavLinks.map((link) => (
               <a key={link.label} href={link.href} className="transition-opacity hover:opacity-80">{link.label}</a>
             ))}
           </nav>
+          {/* Hamburger button — mobile only */}
+          <button
+            className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 flex-shrink-0"
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-label="Toggle menu"
+          >
+            <span className="block w-6 h-px bg-white transition-all duration-300" style={{ transform: menuOpen ? "rotate(45deg) translate(0, 7px)" : "none" }} />
+            <span className="block w-6 h-px bg-white transition-all duration-300" style={{ opacity: menuOpen ? 0 : 1 }} />
+            <span className="block w-6 h-px bg-white transition-all duration-300" style={{ transform: menuOpen ? "rotate(-45deg) translate(0, -7px)" : "none" }} />
+          </button>
         </div>
+        {/* Mobile dropdown */}
+        {menuOpen && (
+          <nav className="md:hidden flex flex-col border-t text-white text-sm tracking-widest" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
+            {heroNavLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="px-6 py-4 hover:opacity-70 transition-opacity"
+                style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        )}
       </header>
 
       {/* ── Hero ─────────────────────────────────────────── */}
